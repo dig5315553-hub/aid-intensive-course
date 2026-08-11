@@ -11,7 +11,7 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("📚 AI·D 집중과정")
+st.title("📚 국가평생교육진흥원 AI·D 집중과정")
 st.caption("AI·D 집중과정을 검색하고 확인할 수 있습니다.")
 
 # ==============================
