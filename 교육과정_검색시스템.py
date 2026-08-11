@@ -47,7 +47,7 @@ required_columns = [
     "교육과정명",
     "세부교육과정명",
     "운영일정",
-    "링크"
+    "수강 정보"
 ]
 
 missing = [col for col in required_columns if col not in df.columns]
@@ -174,10 +174,10 @@ else:
             with info3:
                 st.markdown(f"📅 **운영일정**  \n{row['운영일정']}")
 
-            if row["링크"] and row["링크"].lower() not in ["nan", "none"]:
+            if row["수강 정보"] and row["수강 정보"].lower() not in ["nan", "none"]:
                 st.link_button(
                     "🔗 교육과정 상세보기",
-                    row["링크"]
+                    row["수강 정보"]
                 )
 
 # ==============================
