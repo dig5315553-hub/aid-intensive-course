@@ -174,10 +174,19 @@ else:
             with info3:
                 st.markdown(f"📅 **운영일정**  \n{row['운영일정']}")
 
-            if row["수강 정보"] and row["수강 정보"].lower() not in ["nan", "none"]:
+            course_link = str(row["수강 정보"]).strip()
+
+            if course_link and course_link.lower() not in ["nan", "none"]:
                 st.link_button(
                     "🔗 교육과정 상세보기",
-                    row["수강 정보"]
+                    course_link,
+                    width="stretch"
+                )
+            else:
+                st.button(
+                    "준비 중입니다",
+                    disabled=True,
+                    width="stretch"
                 )
 
 # ==============================
@@ -205,6 +214,6 @@ st.download_button(
 with st.expander("📊 원본 데이터 보기"):
     st.dataframe(
         df,
-        use_container_width=True,
+        width="stretch",
         hide_index=True
     )
