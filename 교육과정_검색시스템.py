@@ -15,6 +15,17 @@ st.title("📚 국가평생교육진흥원 AI·D 집중과정")
 st.caption("AI·D 집중과정을 검색하고 확인할 수 있습니다.")
 
 # ==============================
+# AI·D 집중과정 안내 이미지
+# ==============================
+IMAGE_FILE = Path(__file__).parent / "AID.jpg"
+
+if IMAGE_FILE.exists():
+    st.image(
+        str(IMAGE_FILE),
+        use_container_width=True
+    )
+
+# ==============================
 # 데이터 불러오기
 # ==============================
 CSV_FILE = Path(__file__).parent / "교육과정.csv"
