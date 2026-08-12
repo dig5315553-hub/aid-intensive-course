@@ -20,10 +20,12 @@ st.caption("AI·D 집중과정을 검색하고 확인할 수 있습니다.")
 IMAGE_FILE = Path(__file__).parent / "AID.jpg"
 
 if IMAGE_FILE.exists():
-    st.image(
-        str(IMAGE_FILE),
-        use_container_width=True
-    )
+    image_col1, image_col2, image_col3 = st.columns([1, 4, 1])
+    with image_col2:
+        st.image(
+            str(IMAGE_FILE),
+            use_container_width=True
+        )
 
 # ==============================
 # 데이터 불러오기
