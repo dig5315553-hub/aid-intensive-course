@@ -145,7 +145,7 @@ if result.empty:
     st.warning("검색 조건에 맞는 교육과정이 없습니다.")
 else:
     # 결과를 카드 형태로 표시
-    for idx, row in result.iterrows():
+    for idx, row in result.reset_index(drop=True).iterrows():
 
         with st.container(border=True):
             top_col1, top_col2 = st.columns([5, 1])
@@ -186,7 +186,8 @@ else:
                 st.button(
                     "준비 중입니다",
                     disabled=True,
-                    width="stretch"
+                    width="stretch",
+                    key=f"preparing_{idx}"
                 )
 
 # ==============================
