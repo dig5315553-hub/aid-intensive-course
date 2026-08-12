@@ -11,7 +11,7 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("📚 국가평생교육진흥원 AI·D 집중과정")
+st.title("📚 AI·D 집중과정")
 st.caption("AI·D 집중과정을 검색하고 확인할 수 있습니다.")
 
 # ==============================
@@ -47,7 +47,7 @@ required_columns = [
     "교육과정명",
     "세부교육과정명",
     "운영일정",
-    "수강 정보"
+    "링크"
 ]
 
 missing = [col for col in required_columns if col not in df.columns]
@@ -145,7 +145,7 @@ if result.empty:
     st.warning("검색 조건에 맞는 교육과정이 없습니다.")
 else:
     # 결과를 카드 형태로 표시
-    for idx, row in result.reset_index(drop=True).iterrows():
+    for idx, row in result.iterrows():
 
         with st.container(border=True):
             top_col1, top_col2 = st.columns([5, 1])
@@ -174,20 +174,10 @@ else:
             with info3:
                 st.markdown(f"📅 **운영일정**  \n{row['운영일정']}")
 
-            course_link = str(row["수강 정보"]).strip()
-
-            if course_link and course_link.lower() not in ["nan", "none"]:
+            if row["링크"] and row["링크"].lower() not in ["nan", "none"]:
                 st.link_button(
                     "🔗 교육과정 상세보기",
-                    course_link,
-                    width="stretch"
-                )
-            else:
-                st.button(
-                    "준비 중입니다",
-                    disabled=True,
-                    width="stretch",
-                    key=f"preparing_{idx}"
+                    row["링크"]
                 )
 
 # ==============================
@@ -215,6 +205,6 @@ st.download_button(
 with st.expander("📊 원본 데이터 보기"):
     st.dataframe(
         df,
-        width="stretch",
+        use_container_width=True,
         hide_index=True
     )
